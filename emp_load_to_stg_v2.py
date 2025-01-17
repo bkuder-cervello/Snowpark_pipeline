@@ -2,9 +2,9 @@
 # https://www.udemy.com/course/snowpark-data-engineering-with-snowflake/learn/lecture/36040084#overview
 
 import sys
-#sys.path.append('/Users/pradeep/Downloads/Udemy_course_videos/course_2_assignments/Snowpark_pipeline/')
+sys.path.append('/workspaces/Snowpark_pipeline/')
 from generic_code import code_library
-from schema import src_stg_schema
+from schema import source_schema
 from snowflake.snowpark.context import get_active_session
 import json
 
@@ -18,7 +18,9 @@ connection_parameter = json.loads(connection_parameter.read())
 session = code_library.snowconnection(connection_parameter)
 
 df = session.read.avro("@my_s3_stage/Avro_folder/userdata1.avro")
-
+df.columns
+df.schema
+df.show()
 
 def copy_to_table_semi_struct_data(session,config_file,schema='NA'):
     database_name = config_file.get("Database_name")
@@ -35,8 +37,8 @@ def copy_to_table_semi_struct_data(session,config_file,schema='NA'):
         df = session.read.avro(Source_location)
 
     # Create temporary stage
-    _ = session.sql("create or replace temp stage demo_db.public.mystage").collect()
-    remote_file_path = '@demo_db.public.mystage/'+Target_table+'/'
+    _ = session.sql("create or replace temp stage demodb.public.mystage").collect()
+    remote_file_path = '@demodb.public.mystage/'+Target_table+'/'
     # Write df to temporary internal stage location
     df.write.copy_into_location(remote_file_path, file_format_type="csv", format_type_options={"FIELD_OPTIONALLY_ENCLOSED_BY":'"'}, header=False, overwrite=True)
     
@@ -52,7 +54,7 @@ def copy_to_table_semi_struct_data(session,config_file,schema='NA'):
     return copied_into_result, qid
 
 
-copied_into_result, qid = copy_to_table_semi_struct_data(session,config_snow_copy,src_stg_schema.int_emp_details_avro)
+copied_into_result, qid = copy_to_table_semi_struct_data(session,config_snow_copy,source_schema.int_emp_details_avro)
 
 
 print(copied_into_result)

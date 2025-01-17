@@ -1,4 +1,4 @@
-# create or replace TABLE DEMO_DB.PUBLIC.EMP_DETAILS AVRO_CLS 
+# create or replace TABLE DEMODB.PUBLIC.EMP_DETAILS AVRO_CLS 
 # ( 
 # REGISTRATION VARCHAR(16777216),
 # USER_ID NUMBER(38,0),
@@ -9,9 +9,9 @@
 
 
 import sys
-#sys.path.append('/Users/pradeep/Downloads/Udemy_course_videos/course_2_assignments/Snowpark_pipeline/')
+sys.path.append('/workspaces/Snowpark_pipeline/')
 from generic_code import code_library
-from schema import src_stg_schema
+from schema import source_schema
 from snowflake.snowpark.context import get_active_session
 import json
 
@@ -24,7 +24,7 @@ connection_parameter = json.loads(connection_parameter.read())
 
 
 session = code_library.snowconnection(connection_parameter)
-copied_into_result, qid = code_library.copy_to_table_semi_struct_data(session,config_snow_copy,src_stg_schema.emp_details_avro_cls)
+copied_into_result, qid = code_library.copy_to_table_semi_struct_data(session,config_snow_copy,source_schema.emp_details_avro_cls)
 
 
 print(copied_into_result)

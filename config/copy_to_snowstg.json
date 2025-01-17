@@ -1,4 +1,4 @@
-{"Database_name":"DEMO_DB",
+{"Database_name":"DEMODB",
 "Schema_name":"PUBLIC",
 "Target_table":"EMPLOYEE",
 "Reject_table":"EMPLOYEE_REJECTS",

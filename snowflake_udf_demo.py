@@ -1,6 +1,6 @@
 # Creating snowpark python UDF
 
-# Create or replace stage demo_db.public.udf_stage;
+# Create or replace stage demodb.public.udf_stage;
 
 from snowflake.snowpark.types import IntegerType, StringType
 from snowflake.snowpark.functions import udf, col
@@ -14,7 +14,7 @@ df = session_new.create_dataframe(pd.DataFrame([(1, 2, 3, 4)], columns=["a", "b"
 df.show()
 df.withColumn('A_PLUS_B', a_plus_b(col('"a"'), col('"b"'))).show()
 
-df = session_new.table("DEMO_DB.PUBLIC.CUSTOMER_TEST")
+df = session_new.table("DEMODB.PUBLIC.CUSTOMER_TEST")
 dk = df.withColumn('A_PLUS_B', a_plus_b(col('C_CUSTOMER_SK'))).show()
 
 ###### Using python packages #######
@@ -45,7 +45,7 @@ from snowflake.snowpark.functions import udf
 
 session_new.add_packages("numpy", "pandas","catalogue","faker","phonenumbers","dateparser","nltk","textblob")
 
-#session.add_import("@DEMO_DB.PUBLIC.UDF_STAGE/scrubadub/scrubadub.zip")
+#session.add_import("@DEMODB.PUBLIC.UDF_STAGE/scrubadub/scrubadub.zip")
 session_new.add_import('/Users/pradeep/Downloads/scrub/scrubadubw/scrubadub')
 session_new.add_import('/Users/pradeep/Downloads/python-stdnum-1.18/stdnum')
 session_new.add_import('/Users/pradeep/Downloads/textblob-0.17.1/textblob')

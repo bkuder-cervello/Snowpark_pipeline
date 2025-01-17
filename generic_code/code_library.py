@@ -66,7 +66,7 @@ def copy_to_table_semi_struct_data(session,config_file,schema='NA'):
     on_error = config_file.get("on_error")
     Source_location = config_file.get("Source_location")
     transformations = config_file.get("transformations")
-    maped_columns = config_file.get("map_columns")
+    mapped_columns = config_file.get("map_columns")
 
     if config_file.get("Source_file_type") == 'csv':
             return "Expecting semi structured data but got csv"
@@ -74,11 +74,11 @@ def copy_to_table_semi_struct_data(session,config_file,schema='NA'):
         df = session.read.avro(Source_location)
     
     # Map columns in df to target table
-    df = map_columns(df,maped_columns)
+    df = map_columns(df,mapped_columns)
 
     # Create temporary stage
-    _ = session.sql("create or replace temp stage demo_db.public.mystage").collect()
-    remote_file_path = '@demo_db.public.mystage/'+Target_table+'/'
+    _ = session.sql("create or replace temp stage demodb.public.mystage").collect()
+    remote_file_path = '@demodb.public.mystage/'+Target_table+'/'
     # Write df to temporary internal stage location
     df.write.copy_into_location(remote_file_path, file_format_type="csv", format_type_options={"FIELD_OPTIONALLY_ENCLOSED_BY":'"'}, header=False, overwrite=True)
     

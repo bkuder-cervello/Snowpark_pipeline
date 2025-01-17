@@ -1,8 +1,9 @@
-{"account":"ovmyonn-cp58207",
-"user":"pradeep",
-"password": "Abcd067$",
-"role":"ACCOUNTADMIN",
-"warehouse":"COMPUTE_WH",
-"database":"DEMO_DB",
+{"account":"CERVELLOPARTNER",
+"user":"bkuder",
+"password": "B4psadagger@1",
+"authenticator":"USERNAME_PASSWORD_MFA",
+"role":"CERVELLO_INTERNAL",
+"warehouse":"CERVELLO_XSMALL_1",
+"database":"DEMODB",
 "schema":"PUBLIC"
 }

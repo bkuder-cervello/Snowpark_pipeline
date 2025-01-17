@@ -1,5 +1,5 @@
 {
-    "Database_name":"DEMO_DB",
+    "Database_name":"DEMODB",
     "Schema_name":"PUBLIC",
     "Target_table":"INT_EMP_DETAILS_AVRO",
     "Reject_table":"EMPLOYEE_AVRO_REJECTS",      

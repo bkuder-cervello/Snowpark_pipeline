@@ -11,29 +11,30 @@
 
 
 import sys
-sys.path.append('/Users/pradeep/Downloads/Udemy_course_videos/course_2_assignments/Snowpark_pipeline/')
+sys.path.append('/workspaces/Snowpark_pipeline/')
 from generic_code import code_library
 from schema import source_schema
 from snowflake.snowpark.context import get_active_session
+from snowflake.snowpark.types import IntegerType, StringType, StructField, StructType, DateType
 
 
-connection_parameters = {"account":"kp41433.ap-southeast-1", \
-"user":"pavan", \
-"password": "Abc123123", \
-"role":"ACCOUNTADMIN", \
-"warehouse":"COMPUTE_WH", \
-"database":"DEMO_DB", \
+connection_parameters = {"account":"CERVELLOPARTNER", \
+"user":"bkuder", \
+"password": "B4psadagger@1", \
+"role":"CERVELLO_INTERNAL", \
+"warehouse":"CERVELLO_XSMALL_1", \
+"database":"DEMODB", \
 "schema":"PUBLIC" \
 }
 
-config_file = {"Database_name":"DEMO_DB",\
-"Schema_name":"PUBLIC",
+config_file = {"Database_name":"DEMODB",\
+"Schema_name":"PUBLIC",\
 "Target_table":"EMPLOYEE",
-"Reject_table":"EMPLOYEE_REJECTS",
-"target_columns":["FIRST_NAME","LAST_NAME","EMAIL","ADDRESS","CITY","DOJ"],
-"on_error":"CONTINUE",
-"Source_location":"@my_s3_stage/employee/",
-"Source_file_type":"csv"
+"Reject_table":"EMPLOYEE_REJECTS",\
+"target_columns":["FIRST_NAME","LAST_NAME","EMAIL","ADDRESS","CITY","DOJ"],\
+"on_error":"CONTINUE",\
+"Source_location":"@my_s3_stage/employee/",\
+"Source_file_type":"csv"\
 }
     
 # Declare schema for csv file and read data
